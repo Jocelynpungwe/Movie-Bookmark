@@ -1,0 +1,205 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(17, 24, 36);
+    padding: 28px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.bookmark-display{
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-bottom: 16px;
+}
+
+header{
+    display: flex;
+    background-color: rgb(71, 85, 105);
+    justify-content: space-between;
+    padding: 16px;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 12px;
+}
+
+p{
+    margin: 5px 0 0;
+}
+
+i{
+    font-size: 1.975rem;
+    line-height: 2.25rem;
+    cursor: pointer;
+
+}
+.fa-clapperboard{
+    color: rgb(220, 38, 38);
+    
+}
+
+.fa-tv{
+    margin: 0 25px;
+}
+
+.profile-img{
+    width: 28px;
+    border-radius: 50%;
+}
+
+
+
+
+.fa-magnifying-glass{
+    color: white;
+    font-size: 24px;
+    line-height: 32px;
+    margin-right: 12px;
+}
+
+.search{
+    width: 83%;
+    background-color: rgb(17, 24, 39);
+    padding: 20px;
+    margin-top: 28px;
+    font-size: 24px;
+    line-height: 32px;
+    color: rgb(71, 85, 105)
+}
+.search-movie-display{
+    margin-top: 16px;
+}
+.nav-container i {
+    color: white;
+}
+.nav-container i:hover {
+    color: rgb(98, 110, 121);
+}
+.bookmark-circle{
+    color: white;
+}
+.bookmark-circle .marked{
+    color: yellow;
+}
+
+h2{
+    color: white;
+    font-size: 36px;
+    line-height: 40px;
+    margin: 32px 0;
+}
+h3{
+    color: white;
+    font-size: 25px;
+}
+
+/* trending */
+
+.trending-section{
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+/* recommendation */
+
+.recommended-display{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.container{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.poster-img{
+    width: 100%;
+    /* height: 100%; */
+}
+.poster-img-trending{
+    width: 200px;
+}
+.search-display{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.movie-container{
+    width: 200px;
+    margin-right: 16px;
+    margin-bottom: 16px; 
+     
+}
+
+.movie-section{
+    color: rgb(71, 85, 105);
+    height: 30%;
+}
+
+
+.poster-container{
+    width: 100%;
+    /* height: 70%; */
+    position: relative;  
+}
+
+.bookmark-circle{
+    background-color: rgb(75,85,99);
+    display: flex;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.fa-bookmark{
+    margin: auto;
+}
+
+.movie-info{
+    padding: 0 15rem;
+    color: rgb(71, 85, 105);
+}
+
+.movie-title{
+    font-family: 700;
+    margin-right: 12px;
+   
+
+}
+
+.year-container{
+    display: flex;
+    
+}
+.year-container p{
+    margin-top: 8px;
+
+    
+}
+
+.year-container > i{
+    font-size: 24px;
+    line-height: 32px;
+    
+    margin-right: 8px;
+    
+}
+
+@media(max-width: 560px)
+{
+    .search-display,
+    .recommended-display,
+    .bookmark-display{
+        justify-content: center;
+    }
+}
