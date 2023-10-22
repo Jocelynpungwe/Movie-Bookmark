@@ -4,8 +4,6 @@ const searchMovieDisplay = document.getElementById("search-movie-display")
 const search = document.getElementById("search")
 
 
-const movieArray = ["love","marvel","fight","basketball","laugh","life","kids","food",]
-
 let trendingArray = []
 let recomandedArray = []
 let searchArray = []
@@ -61,6 +59,7 @@ search.addEventListener("change",function(){
     .then(res => {
         if(!res.ok)
         {
+            console.log(res.status)
             throw Error("Server currently unavailable")
         }
        return res.json()
@@ -104,17 +103,13 @@ function bookMarkYellow(){
 
 }
 
-function randomString(){
-    const randomIndex = Math.floor(Math.random() *  movieArray.length)
-    return movieArray[randomIndex]
-}
-
 function trendingSection()
 {
-    fetch(`http://www.omdbapi.com/?apikey=d9137905&s=${randomString()}&type=movie`)
+    fetch("http://www.omdbapi.com/?apikey=d9137905&s=love&type=movie")
     .then(res => {
         if(!res.ok)
         {
+            console.log(res)
             throw Error("Server currently unavailable")
         }
     return res.json()
@@ -132,10 +127,11 @@ function trendingSection()
 
 function recommandedSection(){
 
-    fetch(`http://www.omdbapi.com/?apikey=d9137905&s=${randomString()}`)
+    fetch("http://www.omdbapi.com/?apikey=d9137905&s=fight")
     .then(res => {
         if(!res.ok)
         {
+            console.log(res)
             throw Error("Server currently unavailable")
         }
     return res.json()
