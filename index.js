@@ -3,6 +3,9 @@ const recommendedDisplay = document.getElementById("recommended-display")
 const searchMovieDisplay = document.getElementById("search-movie-display")
 const search = document.getElementById("search")
 
+
+const movieArray = ["love","marvel","fight","basketball","laugh","life","kids","food",]
+
 let trendingArray = []
 let recomandedArray = []
 let searchArray = []
@@ -29,11 +32,12 @@ document.querySelector("body").addEventListener("click",function(e){
         .then(res =>{
             if(!res.ok)
             {
-                throw Error("Something Went Wrong")
+                throw Error("Server currently unavailable")
             }
             return res.json()
         })
         .then(data=>{
+
 
             if(!bookmarkArray.map(i => i.imdbID).includes(e.target.dataset.bookmark))
             {
@@ -44,20 +48,20 @@ document.querySelector("body").addEventListener("click",function(e){
             }
                         
         })
-        .catch(err => console.log(err))
+        .catch(err => alert(err))
     }
 })
 
 search.addEventListener("change",function(){
 
-    trending.style.display = "none"
+
     searchMovieDisplay.style.display = "block"
 
     fetch(`http://www.omdbapi.com/?apikey=d9137905&s=${search.value}&type=movie`)
     .then(res => {
         if(!res.ok)
         {
-            throw Error("Something went wrong")
+            throw Error("Server currently unavailable")
         }
        return res.json()
     
@@ -81,7 +85,7 @@ search.addEventListener("change",function(){
         }
         
     })
-    .catch(err => console.log(err))
+    .catch(err => alert(err))
         
 })
 
@@ -100,14 +104,18 @@ function bookMarkYellow(){
 
 }
 
+function randomString(){
+    const randomIndex = Math.floor(Math.random() *  movieArray.length)
+    return movieArray[randomIndex]
+}
 
 function trendingSection()
 {
-    fetch("http://www.omdbapi.com/?apikey=d9137905&s=love&type=movie")
+    fetch(`http://www.omdbapi.com/?apikey=d9137905&s=${randomString()}&type=movie`)
     .then(res => {
         if(!res.ok)
         {
-            throw Error("Something went wrong")
+            throw Error("Server currently unavailable")
         }
     return res.json()
 
@@ -117,18 +125,18 @@ function trendingSection()
         getTrendingApi(trendingArray,trending)
  
     })
-    .catch(err => console.log(err))
+    .catch(err => alert(err))
 
 }
 
 
 function recommandedSection(){
 
-    fetch("http://www.omdbapi.com/?apikey=d9137905&s=fight")
+    fetch(`http://www.omdbapi.com/?apikey=d9137905&s=${randomString()}`)
     .then(res => {
         if(!res.ok)
         {
-            throw Error("Something went wrong")
+            throw Error("Server currently unavailable")
         }
     return res.json()
 
@@ -137,7 +145,7 @@ function recommandedSection(){
         recomandedArray = data.Search
         getMovieApi(recomandedArray,recommendedDisplay)
     })
-    .catch(err => console.log(err))
+    .catch(err => alert(err))
 
 
 }
@@ -232,5 +240,3 @@ function renderHtmlMovie(data){
 `
 
 }
-
-

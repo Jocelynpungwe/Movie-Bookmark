@@ -10,13 +10,6 @@ body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.bookmark-display{
-    display: flex;
-    flex-wrap: wrap;
-
-    margin-bottom: 16px;
-}
-
 header{
     display: flex;
     background-color: rgb(71, 85, 105);
@@ -37,54 +30,6 @@ i{
     cursor: pointer;
 
 }
-.fa-clapperboard{
-    color: rgb(220, 38, 38);
-    
-}
-
-.fa-tv{
-    margin: 0 25px;
-}
-
-.profile-img{
-    width: 28px;
-    border-radius: 50%;
-}
-
-
-
-
-.fa-magnifying-glass{
-    color: white;
-    font-size: 24px;
-    line-height: 32px;
-    margin-right: 12px;
-}
-
-.search{
-    width: 83%;
-    background-color: rgb(17, 24, 39);
-    padding: 20px;
-    margin-top: 28px;
-    font-size: 24px;
-    line-height: 32px;
-    color: rgb(71, 85, 105)
-}
-.search-movie-display{
-    margin-top: 16px;
-}
-.nav-container i {
-    color: white;
-}
-.nav-container i:hover {
-    color: rgb(98, 110, 121);
-}
-.bookmark-circle{
-    color: white;
-}
-.bookmark-circle .marked{
-    color: yellow;
-}
 
 h2{
     color: white;
@@ -97,56 +42,45 @@ h3{
     font-size: 25px;
 }
 
-/* trending */
 
-.trending-section{
-    display: flex;
-    overflow-x: scroll;
-    overflow-y: hidden;
-}
+/* image */
 
-/* recommendation */
-
-.recommended-display{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.container{
-    width: 90%;
-    margin: 0 auto;
-}
-
-.poster-img{
-    width: 100%;
-    /* height: 100%; */
-}
-.poster-img-trending{
-    width: 200px;
-}
-.search-display{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-.movie-container{
-    width: 200px;
-    margin-right: 16px;
-    margin-bottom: 16px; 
-     
-}
-
-.movie-section{
-    color: rgb(71, 85, 105);
-    height: 30%;
+.profile-img{
+    width: 28px;
+    border-radius: 50%;
 }
 
 
-.poster-container{
-    width: 100%;
-    /* height: 70%; */
-    position: relative;  
+/* icons */
+
+.fa-clapperboard{
+    color: rgb(220, 38, 38);
+    
+}
+
+.fa-tv{
+    margin: 0 25px;
+}
+
+
+.fa-magnifying-glass{
+    color: white;
+    font-size: 24px;
+    line-height: 32px;
+    margin-right: 12px;
+}
+
+.nav-container i {
+    color: white;
+}
+.nav-container i:hover {
+    color: rgb(98, 110, 121);
+}
+.bookmark-circle{
+    color: white;
+}
+.bookmark-circle .marked{
+    color: yellow;
 }
 
 .bookmark-circle{
@@ -164,6 +98,81 @@ h3{
 .fa-bookmark{
     margin: auto;
 }
+
+.year-container > i{
+    font-size: 24px;
+    line-height: 32px;
+    
+    margin-right: 8px;
+    
+}
+
+
+/* layouts */
+.bookmark-display{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.search{
+    width: 83%;
+    background-color: rgb(17, 24, 39);
+    padding: 20px;
+    margin-top: 28px;
+    font-size: 24px;
+    line-height: 32px;
+    color: rgb(71, 85, 105)
+}
+.search-movie-display{
+    margin-top: 16px;
+}
+
+.trending-section{
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+
+.recommended-display,
+.search-display{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.container{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.poster-img{
+    width: 100%;
+
+}
+.poster-img-trending{
+    width: 200px;
+}
+
+.movie-container{
+    width: 200px;
+    margin-right: 16px;
+    margin-bottom: 16px; 
+     
+}
+
+.movie-section{
+    color: rgb(71, 85, 105);
+    height: 30%;
+}
+
+
+.poster-container{
+    width: 100%;
+    position: relative;  
+}
+
 
 .movie-info{
     padding: 0 15rem;
@@ -187,13 +196,6 @@ h3{
     
 }
 
-.year-container > i{
-    font-size: 24px;
-    line-height: 32px;
-    
-    margin-right: 8px;
-    
-}
 
 @media(max-width: 560px)
 {

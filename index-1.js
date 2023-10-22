@@ -2,7 +2,7 @@ let bookmarkDisplay = document.getElementById("bookmark-display")
 let emptyBookmark = document.getElementById("empty-bookmark")
 
 let bookArray = JSON.parse(localStorage.getItem("bookmark"))
-        
+let displayBook      
         
 if(!bookArray[0])
 {
@@ -11,7 +11,7 @@ if(!bookArray[0])
     emptyBookmark.style.display =  "none"
 }
 
-displayBook = bookArray.map(data=>{
+    displayBook = bookArray.map(data=>{
         return `
             <div class="movie-container">
                     <div class="poster-container">
