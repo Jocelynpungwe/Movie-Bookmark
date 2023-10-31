@@ -59,7 +59,7 @@ search.addEventListener("change",function(){
     .then(res => {
         if(!res.ok)
         {
-            console.log(res.status)
+            alert(res.status)
             throw Error("Server currently unavailable")
         }
        return res.json()
@@ -109,7 +109,7 @@ function trendingSection()
     .then(res => {
         if(!res.ok)
         {
-            console.log(res)
+            alert(res.status)
             throw Error("Server currently unavailable")
         }
     return res.json()
@@ -131,7 +131,7 @@ function recommandedSection(){
     .then(res => {
         if(!res.ok)
         {
-            console.log(res)
+            alert(res.status)
             throw Error("Server currently unavailable")
         }
     return res.json()
