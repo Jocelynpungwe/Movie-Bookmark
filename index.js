@@ -26,7 +26,7 @@ document.querySelector("body").addEventListener("click",function(e){
     if(e.target.dataset.bookmark)
     {
        
-        fetch(`http://www.omdbapi.com/?apikey=d9137905&i=${e.target.dataset.bookmark}`)
+        fetch(`https://www.omdbapi.com/?apikey=d9137905&i=${e.target.dataset.bookmark}`)
         .then(res =>{
             if(!res.ok)
             {
@@ -55,7 +55,7 @@ search.addEventListener("change",function(){
 
     searchMovieDisplay.style.display = "block"
 
-    fetch(`http://www.omdbapi.com/?apikey=d9137905&s=${search.value}&type=movie`)
+    fetch(`https://www.omdbapi.com/?apikey=d9137905&s=${search.value}&type=movie`)
     .then(res => {
         if(!res.ok)
         {
@@ -105,7 +105,7 @@ function bookMarkYellow(){
 
 function trendingSection()
 {
-    fetch("http://www.omdbapi.com/?apikey=d9137905&s=love&type=movie")
+    fetch("https://www.omdbapi.com/?apikey=d9137905&s=love&type=movie")
     .then(res => {
         if(!res.ok)
         {
@@ -127,7 +127,7 @@ function trendingSection()
 
 function recommandedSection(){
 
-    fetch("http://www.omdbapi.com/?apikey=d9137905&s=fight")
+    fetch("https://www.omdbapi.com/?apikey=d9137905&s=fight")
     .then(res => {
         if(!res.ok)
         {
@@ -150,7 +150,7 @@ function displayMovie(){
  
     for(let i = 0 ; i < searchArray.length; i++)
     {
-        fetch(`http://www.omdbapi.com/?apikey=d9137905&t=${searchArray[i].Title}`)
+        fetch(`https://www.omdbapi.com/?apikey=d9137905&t=${searchArray[i].Title}`)
             .then(res=>res.json())
             .then(data=>{
  
@@ -166,7 +166,7 @@ function getMovieApi(array,display)
 {
     for(let i = 0 ; i < array.length; i++)
     {
-        fetch(`http://www.omdbapi.com/?apikey=d9137905&t=${array[i].Title}`)
+        fetch(`https://www.omdbapi.com/?apikey=d9137905&t=${array[i].Title}`)
             .then(res=>res.json())
             .then(data=>{
  
@@ -179,7 +179,7 @@ function getTrendingApi(array,display)
 {
     for(let i = 0 ; i < array.length; i++)
     {
-        fetch(`http://www.omdbapi.com/?apikey=d9137905&t=${array[i].Title}`)
+        fetch(`https://www.omdbapi.com/?apikey=d9137905&t=${array[i].Title}`)
             .then(res=>res.json())
             .then(data=>{
  
