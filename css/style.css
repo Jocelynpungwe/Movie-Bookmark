@@ -102,7 +102,6 @@ h3{
 .year-container > i{
     font-size: 24px;
     line-height: 32px;
-    
     margin-right: 8px;
     
 }
@@ -167,12 +166,10 @@ h3{
     height: 30%;
 }
 
-
 .poster-container{
     width: 100%;
     position: relative;  
 }
-
 
 .movie-info{
     padding: 0 15rem;
@@ -183,7 +180,6 @@ h3{
     font-family: 700;
     margin-right: 12px;
    
-
 }
 
 .year-container{
@@ -195,7 +191,6 @@ h3{
 
     
 }
-
 
 @media(max-width: 560px)
 {

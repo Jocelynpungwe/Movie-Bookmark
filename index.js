@@ -2,19 +2,14 @@ const trending = document.getElementById("trending-section")
 const recommendedDisplay = document.getElementById("recommended-display")
 const searchMovieDisplay = document.getElementById("search-movie-display")
 const search = document.getElementById("search")
-
+const bookmarkSection = document.getElementById("bookmark-section")
 
 let trendingArray = []
 let recomandedArray = []
 let searchArray = []
 let bookmarkArray = []
-
-localStorageArray = JSON.parse(localStorage.getItem("bookmark"))
-if(localStorageArray)
-{
-    bookmarkArray = localStorageArray
-}
-
+    
+checkLocalStorage()
 trendingSection()
 recommandedSection()
 
@@ -25,7 +20,6 @@ setTimeout(function(){
 document.querySelector("body").addEventListener("click",function(e){
     if(e.target.dataset.bookmark)
     {
-       
         fetch(`https://www.omdbapi.com/?apikey=d9137905&i=${e.target.dataset.bookmark}`)
         .then(res =>{
             if(!res.ok)
@@ -36,13 +30,12 @@ document.querySelector("body").addEventListener("click",function(e){
         })
         .then(data=>{
 
-
             if(!bookmarkArray.map(i => i.imdbID).includes(e.target.dataset.bookmark))
             {
                 bookmarkArray.push(data)
                 localStorage.setItem("bookmark",JSON.stringify(bookmarkArray))
-                const el = document.querySelector(`[data-bookmark="${e.target.dataset.bookmark}"]`);
-                el.style.color = "yellow"
+                const displayBookmark = document.querySelector(`[data-bookmark="${e.target.dataset.bookmark}"]`)
+                displayBookmark.style.color = "yellow"  
             }
                         
         })
@@ -52,14 +45,12 @@ document.querySelector("body").addEventListener("click",function(e){
 
 search.addEventListener("change",function(){
 
-
     searchMovieDisplay.style.display = "block"
 
     fetch(`https://www.omdbapi.com/?apikey=d9137905&s=${search.value}&type=movie`)
     .then(res => {
         if(!res.ok)
         {
-            alert(res.status)
             throw Error("Server currently unavailable")
         }
        return res.json()
@@ -88,6 +79,78 @@ search.addEventListener("change",function(){
         
 })
 
+function checkLocalStorage(){
+    localStorageArray = JSON.parse(localStorage.getItem("bookmark"))
+
+    if(localStorageArray)
+    {
+        
+        bookmarkArray = localStorageArray
+
+        for(let i = 0; i < bookmarkArray.length; i++)
+        {
+            fetch(`https://www.omdbapi.com/?apikey=d9137905&t=${bookmarkArray[i].Title}`)
+                .then(res=>{
+                    if(!res.ok)
+                    {
+                        throw Error;    
+                    }
+                    res.json()
+                })
+                .then(data=>{
+        
+                    bookmarkSection.innerHTML += renderHtmlMovie(data,false)
+        
+                })
+                .catch(err => alert(err))
+        }
+        
+    }
+
+}
+
+function trendingSection()
+{
+    fetch("https://www.omdbapi.com/?apikey=d9137905&s=love&type=movie")
+    .then(res => {
+        if(!res.ok)
+        {
+
+            throw Error("Server currently unavailable")
+        }
+    return res.json()
+
+    })
+    .then(data=>{
+        trendingArray = data.Search
+        getTrendingApi(trendingArray,trending)
+ 
+    })
+    .catch(err => alert(err))
+
+}
+
+function recommandedSection(){
+
+    fetch("https://www.omdbapi.com/?apikey=d9137905&s=fight")
+    .then(res => {
+        if(!res.ok)
+        {
+            throw Error("Server currently unavailable")
+        }
+    return res.json()
+
+    })
+    .then(data=>{
+        recomandedArray = data.Search
+        getMovieApi(recomandedArray,recommendedDisplay)
+    })
+    .catch(err => alert(err))
+
+
+}
+
+
 function bookMarkYellow(){
 
     if(bookmarkArray)
@@ -103,48 +166,7 @@ function bookMarkYellow(){
 
 }
 
-function trendingSection()
-{
-    fetch("https://www.omdbapi.com/?apikey=d9137905&s=love&type=movie")
-    .then(res => {
-        if(!res.ok)
-        {
-            alert(res.status)
-            throw Error("Server currently unavailable")
-        }
-    return res.json()
 
-    })
-    .then(data=>{
-        trendingArray = data.Search
-        getTrendingApi(trendingArray,trending)
- 
-    })
-    .catch(err => alert(err))
-
-}
-
-
-function recommandedSection(){
-
-    fetch("https://www.omdbapi.com/?apikey=d9137905&s=fight")
-    .then(res => {
-        if(!res.ok)
-        {
-            alert(res.status)
-            throw Error("Server currently unavailable")
-        }
-    return res.json()
-
-    })
-    .then(data=>{
-        recomandedArray = data.Search
-        getMovieApi(recomandedArray,recommendedDisplay)
-    })
-    .catch(err => alert(err))
-
-
-}
 
 function displayMovie(){
  
@@ -154,7 +176,7 @@ function displayMovie(){
             .then(res=>res.json())
             .then(data=>{
  
-                document.getElementById("search-display").innerHTML +=  renderHtmlMovie(data)
+                document.getElementById("search-display").innerHTML +=  renderHtmlMovie(data,true)
                 bookMarkYellow()
             })
     }
@@ -170,7 +192,7 @@ function getMovieApi(array,display)
             .then(res=>res.json())
             .then(data=>{
  
-                display.innerHTML +=  renderHtmlMovie(data)
+                display.innerHTML +=  renderHtmlMovie(data,true)
             })
     }
 }
@@ -183,13 +205,24 @@ function getTrendingApi(array,display)
             .then(res=>res.json())
             .then(data=>{
  
-                display.innerHTML +=  renderHtmlTrending(data)
+                display.innerHTML +=  renderHtmlMovie(data,false)
             })
     }
 }
 
 
-function renderHtmlTrending(data){
+function renderHtmlMovie(data,isNotTrend){
+    let imgClass = ""
+
+    if(isNotTrend)
+    {
+        imgClass = "poster-img"
+    }else{
+        
+        imgClass = "poster-img-trending"
+        
+    }
+    
     return `
                <div class="movie-container">
                     <div class="poster-container">
@@ -211,28 +244,4 @@ function renderHtmlTrending(data){
                     </div>
               </div>
 `
-}
-
-function renderHtmlMovie(data){
-    return `
-               <div class="movie-container">
-                    <div class="poster-container">
-                        <img class="poster-img" src="${data.Poster}" alt="Poster of ${data.Title}"/>    
-                        <div class="bookmark-circle">
-                            <i class="fa-solid fa-bookmark" data-bookmark="${data.imdbID}"></i>
-                        </div>
-                    </div>
-
-                    <div class="movie-section">
-                        <p class="movie-title">${data.Title}</p>
-                        <div class="year-container">
-                            <i class="fa-solid fa-film"></i>
-                            <p>${data.Year}</p>
-                        </div>
-                        <p>${data.Genre}</p>
-                        <p>${data.Rated}</p>                       
-                    </div>
-              </div>
-`
-
 }
