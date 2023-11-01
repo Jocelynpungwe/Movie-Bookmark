@@ -62,7 +62,7 @@ search.addEventListener("change",function(){
         {
             searchArray = data.Search
             searchMovieDisplay.innerHTML = `
-                <h2>Found ${searchArray.length} results from '${search.value}'</h2>
+                <h2>Found ${searchArray.length} results from "${search.value}"</h2>
                 <div id="search-display" class="search-display"></div>
                 `
                 displayMovie()
@@ -70,7 +70,7 @@ search.addEventListener("change",function(){
         }
         else{
             searchMovieDisplay.innerHTML = `
-            <h2>Found 0 results from '${search.value}'</h2>`
+            <h2>Found 0 results from "${search.value}"</h2>`
     
         }
         
@@ -93,9 +93,9 @@ function checkLocalStorage(){
                 .then(res=>{
                     if(!res.ok)
                     {
-                        throw Error;    
+                        throw Error("Server currently unavailable");    
                     }
-                    res.json()
+                 return res.json()
                 })
                 .then(data=>{
         
@@ -150,7 +150,6 @@ function recommandedSection(){
 
 }
 
-
 function bookMarkYellow(){
 
     if(bookmarkArray)
@@ -165,8 +164,6 @@ function bookMarkYellow(){
     }
 
 }
-
-
 
 function displayMovie(){
  
